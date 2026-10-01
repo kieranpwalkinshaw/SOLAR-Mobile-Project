@@ -13,8 +13,8 @@ public class ScrollingBackground : MonoBehaviour
     void Update()
     {
         float moveY = scrollSpeed * Time.deltaTime;
-        transform.position += new Vector3(0, moveY, 0);
-        if (transform.position.y <= -10f)
+        transform.position += new Vector3(0, moveY, 0); // move the background downwards based on the scroll speed (moveY)
+        if (transform.position.y <= -10f) // if the background has scrolled down past the camera view, reset its position to the top of the screen
         {
             transform.position = new Vector3(0, 0, 0);
         }
