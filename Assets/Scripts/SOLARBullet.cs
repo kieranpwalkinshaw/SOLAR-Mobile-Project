@@ -3,6 +3,11 @@ using UnityEngine;
 
 public class SOLARBullet : MonoBehaviour
 {
+    private void Awake()
+    {
+        instance = this;
+    }
+    public static SOLARBullet instance;
     void Update()
     {
         transform.position += new Vector3(0f, SOLARWeapons.Instance.speed * Time.deltaTime);

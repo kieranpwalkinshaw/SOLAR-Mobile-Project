@@ -5,6 +5,7 @@ using UnityEngine;
 public class Dart : MonoBehaviour
 {
     public static Dart instance;
+
     private void Awake()
     {
         instance = this;

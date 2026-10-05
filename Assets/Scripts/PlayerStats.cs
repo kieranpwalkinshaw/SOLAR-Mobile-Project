@@ -10,6 +10,7 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] public int maxEnergy = 3;
     public int Score = 0;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+ 
     void Start()
     {
         instance = this;
@@ -24,15 +25,21 @@ public class PlayerStats : MonoBehaviour
 
     }
 
+    private bool gameOver = false;
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (gameOver)
+        {
+            return;
+        }
         Debug.Log("Player damaged");
         health--;
         UIController.instance.UpdateHealthSlider(health, maxHealth);  
         if (health <= 0)
         {
-            Debug.Log("Player has died");
-            Destroy(gameObject);
+           Debug.Log("Game Over");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Game Over");
         }
     }
 }
