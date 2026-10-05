@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class DartObjectSpawning : MonoBehaviour
 {
+    public static DartObjectSpawning instance;
 
     [SerializeField] private GameObject objectPrefab;
     [SerializeField] private Transform minPos;
@@ -11,7 +12,11 @@ public class DartObjectSpawning : MonoBehaviour
     public float spawnInterval = 2f;
     public float minSpawnInterval = 1f;
     public int spawnedObjectCount;
-    
+
+    private void Awake()
+    {
+        instance = this;
+    }
     void Start()
     {
         
