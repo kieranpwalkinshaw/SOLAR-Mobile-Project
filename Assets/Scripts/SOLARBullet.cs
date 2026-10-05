@@ -10,7 +10,16 @@ public class SOLARBullet : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-
     }
+
+        private void OnCollisionEnter2D(Collision2D collision) 
+        { 
+            if (collision.gameObject.CompareTag("Enemy"))
+            {
+            Debug.Log("Bullet hit enemy");
+            Destroy(gameObject);
+            UIController.instance.UpdateScoreText(score: PlayerStats.instance.Score += 50);
+            UIController.instance.UpdateEnergySlider(PlayerStats.instance.energy += 1, PlayerStats.instance.maxEnergy);
+        }
+        }   
 }
