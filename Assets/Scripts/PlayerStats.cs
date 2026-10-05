@@ -4,8 +4,10 @@ public class PlayerStats : MonoBehaviour
 {
     public static PlayerStats instance;
 
-    [SerializeField] private int health = 3;
-    [SerializeField] private int maxHealth = 3;
+    [SerializeField] public int health = 3;
+    [SerializeField] public int maxHealth = 3;
+    [SerializeField] public int energy = 0;
+    [SerializeField] public int maxEnergy = 3;
     public int Score = 0;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

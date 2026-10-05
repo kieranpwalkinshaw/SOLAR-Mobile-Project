@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -102,6 +103,18 @@ public class touchControls : MonoBehaviour
                     isDragging = false;
                 }
             }
-        }//end of update
+        }
+    }//end of update
+
+    //start of button functions
+    public void Heal()
+    {
+        if (PlayerStats.instance.energy >= 3 && PlayerStats.instance.health < PlayerStats.instance.maxHealth)
+        {
+            PlayerStats.instance.health++;
+            PlayerStats.instance.energy -= 3;
+            UIController.instance.UpdateHealthSlider(PlayerStats.instance.health, PlayerStats.instance.maxHealth);
+            UIController.instance.UpdateEnergySlider(PlayerStats.instance.energy, PlayerStats.instance.maxEnergy);
+        }
     }
 }
