@@ -22,4 +22,13 @@ public class Dart : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        health--;
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
 }
