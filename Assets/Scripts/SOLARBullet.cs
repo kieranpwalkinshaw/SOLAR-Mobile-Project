@@ -23,7 +23,7 @@ public class SOLARBullet : MonoBehaviour
             {
             Debug.Log("Bullet hit enemy");
             Destroy(gameObject);
-            UIController.instance.UpdateScoreText(score: PlayerStats.instance.Score += 50);
+            UIController.instance.UpdateScoreText(score: PlayerStats.instance.Score += 100);
             UIController.instance.UpdateEnergySlider(PlayerStats.instance.energy += 1, PlayerStats.instance.maxEnergy);
         }
         }   
