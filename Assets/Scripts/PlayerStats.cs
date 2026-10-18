@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour
 {
     public static PlayerStats instance;
-
+    //set up health and energy variables then a public score variable
     [SerializeField] public int health = 3;
     [SerializeField] public int maxHealth = 3;
     [SerializeField] public int energy = 0;
@@ -29,7 +29,7 @@ public class PlayerStats : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision) //on collision
     {
-        if (gameOver)
+        if (gameOver) //if the player is defeated
         {
             return;
         }
