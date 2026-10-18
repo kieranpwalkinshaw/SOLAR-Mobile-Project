@@ -14,8 +14,8 @@ public class touchControls : MonoBehaviour
     private bool touchStarted = false;
     private float Xoffset;
     private float fixedY;
-    //declare variables for the left and right boundaries of the screen
-    private float maxLeft; 
+    //declare variables for the left and right bounds of the screen
+    private float maxLeft;
     private float maxRight;
 
     private Vector2 touchStartPos;
@@ -27,8 +27,8 @@ public class touchControls : MonoBehaviour
     void Start()
     {
         mainCamera = Camera.main;
-        maxLeft = mainCamera.ViewportToWorldPoint(new Vector2(0.12f, 0)).x; // Set the left boundary to 12f
-        maxRight = mainCamera.ViewportToWorldPoint(new Vector2(0.88f, 0)).x; // Set the right boundary to 88f
+        maxLeft = mainCamera.ViewportToWorldPoint(new Vector2(0.12f, 0)).x;
+        maxRight = mainCamera.ViewportToWorldPoint(new Vector2(0.88f, 0)).x;
     }//end of start
 
 
@@ -38,30 +38,30 @@ public class touchControls : MonoBehaviour
     {
         if (Input.touchCount > 0)// if there is at least one touch on the screen, set touch to the first touch in the array and set touchPosition to the world position of the touch
         {
-            Touch touch = Input.GetTouch(0); // get the first touch in the array
+            Touch touch = Input.GetTouch(0);
 
             Vector3 touchPosition = Camera.main.ScreenToWorldPoint(
                 new Vector3(
                     touch.position.x,
                     touch.position.y,
                     -Camera.main.transform.position.z
-                ) //get the world position of the touch by converting the screen position to the world position with the camera pos
-            );
+                )
+            ); // convert the touch position from screen space to world space
 
             if (touch.phase == TouchPhase.Began) // if the touch has just begun, check if there is a collider at the touch position and if it is the SOLAR 
             {
-                isDragging = false; 
+                isDragging = false;
                 touchStartPos = touchPosition;
 
-                Collider2D collider = Physics2D.OverlapPoint(touchPosition); // check if there is a collider at the touch position
+                Collider2D collider = Physics2D.OverlapPoint(touchPosition);
 
                 if (collider != null && collider.gameObject == gameObject) // if there is a collider and it is the SOLAR, set dragging to true and calculate the offset
                 {
                     isDragging = true;
-                    Xoffset = touchPosition.x - transform.position.x; //find the offset between the touch position and the ship position
-                    fixedY = transform.position.y; //keep the Y fixded so the ship doesn't move up and down
+                    Xoffset = touchPosition.x - transform.position.x; // calculate the offset between the touch position and the SOLAR's position
+                    fixedY = transform.position.y; // store the fixed y position of the SOLAR so it doesn't move vertically
                 }
-                else // if there is no collider or it is not the ship
+                else
                 {
                     isTap = true;
 
@@ -73,17 +73,17 @@ public class touchControls : MonoBehaviour
                 (touch.phase == TouchPhase.Moved || touch.phase == TouchPhase.Stationary)) // if dragging is true and the touch is moving or stationary, update the position of the SOLAR
             {
 
-                float distanceMoved = Vector2.Distance(touchPosition, touchStartPos); //set distancemoved to the distance betweeen the start and current touch position
-                if (distanceMoved > tapThreshold) //if the distance moved is more than the set threshold
+                float distanceMoved = Vector2.Distance(touchPosition, touchStartPos);
+                if (distanceMoved > tapThreshold)
                 {
                     isTap = false; // If the distance moved exceeds the threshold, it's not a tap
                     isDragging = true; // it is now a drag input
                 }
-                if (isDragging)
+                if (isDragging) //if the player is dragging
                 {
-                    float newX = touchPosition.x - Xoffset; //set the ships new x pos to the touch position - the offset
+                    float newX = touchPosition.x - Xoffset; // calculate the new x position based on the touch position and the offset
 
-                    transform.position = new Vector3(Mathf.Clamp(newX, maxLeft, maxRight), fixedY, transform.position.z); //set the ships position to the new x, the fixed y and the current z
+                    transform.position = new Vector3(Mathf.Clamp(newX, maxLeft, maxRight), fixedY, transform.position.z); // clamp the new position to the left and right bounds
                 }
 
                 if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled) //if the touch has ended or been canceled, set dragging to false
@@ -103,13 +103,13 @@ public class touchControls : MonoBehaviour
     //start of button functions
     public void Heal()
     {
-        if (PlayerStats.instance.energy >= 3 && PlayerStats.instance.health < PlayerStats.instance.maxHealth) // if the energy meter is more than or = 3 and their health isnt full
+        if (PlayerStats.instance.energy >= 3 && PlayerStats.instance.health < PlayerStats.instance.maxHealth) //if the player has enough energy and is not at max health
         {
-            AudioManager.instance.PlaySound(AudioManager.instance.button);
-            PlayerStats.instance.health++;
-            PlayerStats.instance.energy -= 3;
-            UIController.instance.UpdateHealthSlider(PlayerStats.instance.health, PlayerStats.instance.maxHealth);
-            UIController.instance.UpdateEnergySlider(PlayerStats.instance.energy, PlayerStats.instance.maxEnergy);
+            AudioManager.instance.PlaySound(AudioManager.instance.button); //play button sound
+            PlayerStats.instance.health++; //increase health by 1
+            PlayerStats.instance.energy -= 3; //deplete energy
+            UIController.instance.UpdateHealthSlider(PlayerStats.instance.health, PlayerStats.instance.maxHealth); //update health slider
+            UIController.instance.UpdateEnergySlider(PlayerStats.instance.energy, PlayerStats.instance.maxEnergy);//update energy slider
         }
     }
 }

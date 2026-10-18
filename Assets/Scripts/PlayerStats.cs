@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour
 {
     public static PlayerStats instance;
-    //declare private variables for health / energy values and score
+    //set up health and energy variables then a public score variable
     [SerializeField] public int health = 3;
     [SerializeField] public int maxHealth = 3;
     [SerializeField] public int energy = 0;
@@ -14,36 +14,33 @@ public class PlayerStats : MonoBehaviour
     void Start()
     {
         instance = this;
-        health = maxHealth; // set health initially to max
-        UIController.instance.UpdateHealthSlider(health, maxHealth); //update the health slider
+        health = maxHealth;
+        UIController.instance.UpdateHealthSlider(health, maxHealth); //set the health slider to the max health at the start of the game
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (energy > maxEnergy) // if energy is > than max energy, set energy to max energy
-        {
-            energy = maxEnergy;
-        }
+
     }
 
     private bool gameOver = false;
 
-    private void OnCollisionEnter2D(Collision2D collision) // on a collision
+    private void OnCollisionEnter2D(Collision2D collision) //on collision
     {
-        if (gameOver)
+        if (gameOver) //if the player is defeated
         {
             return;
         }
-        Debug.Log("Player damaged"); // confirm there was a collision (dev confirmation for testing)
-        health--; // take away 1 health
-        UIController.instance.UpdateHealthSlider(health, maxHealth);  // update the health slider
-        if (health <= 0)
+        Debug.Log("Player damaged"); //log the damage for dev confirm
+        health--; //-1 health
+        UIController.instance.UpdateHealthSlider(health, maxHealth); //update the health display  
+        if (health <= 0) //if player health is at 0 or lower
         {
-            AudioManager.instance.PlaySound(AudioManager.instance.explosion);
-            Debug.Log("Game Over");
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Game Over");
+            AudioManager.instance.PlaySound(AudioManager.instance.explosion); //play explosion sound
+            Debug.Log("Game Over"); //log death for dev confirm
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Game Over"); //load game over screen
         }
     }
 }

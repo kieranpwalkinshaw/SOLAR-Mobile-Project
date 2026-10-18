@@ -3,11 +3,12 @@ using UnityEngine;
 public class DartObjectSpawning : MonoBehaviour
 {
     public static DartObjectSpawning instance;
-    //declare private variables for the object prefab, min and max spawn positions
+    //declare the variables for prefab and min/maxpositions
     [SerializeField] private GameObject objectPrefab;
     [SerializeField] private Transform minPos;
     [SerializeField] private Transform maxPos;
-    //declare variables for spawn timer, interval, min interval and a count of spawned objects
+    
+    //declare variables for spawn timing and count
     public float spawnTimer;
     public float spawnInterval = 2f;
     public float minSpawnInterval = 1f;
@@ -25,25 +26,25 @@ public class DartObjectSpawning : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        spawnTimer += Time.deltaTime; //increase the spawn timer using deltatime
-        if (spawnTimer >= spawnInterval) //if the spawn timer is >=the spawn interval
+        spawnTimer += Time.deltaTime; // increase the spawntimer with deltatime
+        if (spawnTimer >= spawnInterval) // if the spawntimer is greater than or equal to the spawninterval
         {
-            spawnTimer = 0; //reset the spawn timer
-            spawnObject(); //call the spawn object function
+            spawnTimer = 0; //reset the spawntimer to 0
+            spawnObject(); //call spawnobject function
         }
     }
 
     private void spawnObject()
     {
-        Instantiate(objectPrefab, RandomSpawnPoint(), transform.rotation); //spawn the object prefab at a random spawn point
-        spawnedObjectCount++; //increase the spawned object count by 1
+        Instantiate(objectPrefab, RandomSpawnPoint(), transform.rotation); // spawn the object prefab at a random x spawn point 
+        spawnedObjectCount++; //add 1 to the spawned object count
     }
 
-    private Vector2 RandomSpawnPoint()
+    private Vector2 RandomSpawnPoint() //set the range for the random x spawnpoint
     {
-        Vector2 spawnPoint; //declare a variable for the spawn point
-        spawnPoint.y = minPos.position.y; //set the y pos of the spawn point to the min pos variable
-        spawnPoint.x = Random.Range(minPos.position.x, maxPos.position.x); //set the x pos of the spawn point to a random value between the min and max positions
-        return spawnPoint;
+        Vector2 spawnPoint; 
+        spawnPoint.y = minPos.position.y;
+        spawnPoint.x = Random.Range(minPos.position.x, maxPos.position.x);
+        return spawnPoint; 
     }
 }
