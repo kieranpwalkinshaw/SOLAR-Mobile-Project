@@ -10,26 +10,26 @@ public class Dart : MonoBehaviour
     {
         instance = this;
     }
-
+    //declare health and speed
     [SerializeField] private int health;
     [SerializeField] private float speed;
 
     // Update is called once per frame
     void Update()
     {
-        transform.position += new Vector3(0,-speed * Time.deltaTime, 0);
-        if (transform.position.y < Camera.main.ViewportToWorldPoint(new Vector2(0, -0)).y)
+        transform.position += new Vector3(0,-speed * Time.deltaTime, 0); //move the dart down and multiply the speed by deltatime
+        if (transform.position.y < Camera.main.ViewportToWorldPoint(new Vector2(0, -0)).y) //if the dart is off screen
         {
-            Destroy(gameObject);
+            Destroy(gameObject); //destroy the dart
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision) //on collision
     {
-        health--;
-        if (health <= 0)
+        health--; //-1 health
+        if (health <= 0) //if health is 0 or less
         {
-            Destroy(gameObject);
+            Destroy(gameObject); //destroy dart
         }
     }
 }

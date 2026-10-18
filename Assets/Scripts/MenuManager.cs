@@ -22,19 +22,19 @@ public class MenuManager : MonoBehaviour
     }
 
     public void PlayGame() {
-        AudioManager.instance.PlaySound(AudioManager.instance.button);
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Play Screen");
+        AudioManager.instance.PlaySound(AudioManager.instance.button); //play button sound
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Play Screen"); //load play screen
     }
 
     public void HelpScreen()
     {
-        AudioManager.instance.PlaySound(AudioManager.instance.button);
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Help Screen");
+        AudioManager.instance.PlaySound(AudioManager.instance.button); //play button sound
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Help Screen"); //load help screen
     }
 
     public void MainMenu()
     {
-        AudioManager.instance.PlaySound(AudioManager.instance.button);
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Main Menu");
+        AudioManager.instance.PlaySound(AudioManager.instance.button); //play button sound
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Main Menu"); //load main menu
     }
 }

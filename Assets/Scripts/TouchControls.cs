@@ -8,13 +8,13 @@ public class touchControls : MonoBehaviour
     {
         Instance = this;
     }
-
+    //declare variables
     public bool isTap = false;
     private bool isDragging = false;
     private bool touchStarted = false;
     private float Xoffset;
     private float fixedY;
-
+    //declare variables for the left and right bounds of the screen
     private float maxLeft;
     private float maxRight;
 
@@ -46,7 +46,7 @@ public class touchControls : MonoBehaviour
                     touch.position.y,
                     -Camera.main.transform.position.z
                 )
-            );
+            ); // convert the touch position from screen space to world space
 
             if (touch.phase == TouchPhase.Began) // if the touch has just begun, check if there is a collider at the touch position and if it is the SOLAR 
             {
@@ -58,8 +58,8 @@ public class touchControls : MonoBehaviour
                 if (collider != null && collider.gameObject == gameObject) // if there is a collider and it is the SOLAR, set dragging to true and calculate the offset
                 {
                     isDragging = true;
-                    Xoffset = touchPosition.x - transform.position.x;
-                    fixedY = transform.position.y;
+                    Xoffset = touchPosition.x - transform.position.x; // calculate the offset between the touch position and the SOLAR's position
+                    fixedY = transform.position.y; // store the fixed y position of the SOLAR so it doesn't move vertically
                 }
                 else
                 {
@@ -79,11 +79,11 @@ public class touchControls : MonoBehaviour
                     isTap = false; // If the distance moved exceeds the threshold, it's not a tap
                     isDragging = true; // it is now a drag input
                 }
-                if (isDragging)
+                if (isDragging) //if the player is dragging
                 {
-                    float newX = touchPosition.x - Xoffset;
+                    float newX = touchPosition.x - Xoffset; // calculate the new x position based on the touch position and the offset
 
-                    transform.position = new Vector3(Mathf.Clamp(newX, maxLeft, maxRight), fixedY, transform.position.z);
+                    transform.position = new Vector3(Mathf.Clamp(newX, maxLeft, maxRight), fixedY, transform.position.z); // clamp the new position to the left and right bounds
                 }
 
                 if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled) //if the touch has ended or been canceled, set dragging to false
@@ -103,13 +103,13 @@ public class touchControls : MonoBehaviour
     //start of button functions
     public void Heal()
     {
-        if (PlayerStats.instance.energy >= 3 && PlayerStats.instance.health < PlayerStats.instance.maxHealth)
+        if (PlayerStats.instance.energy >= 3 && PlayerStats.instance.health < PlayerStats.instance.maxHealth) //if the player has enough energy and is not at max health
         {
-            AudioManager.instance.PlaySound(AudioManager.instance.button);
-            PlayerStats.instance.health++;
-            PlayerStats.instance.energy -= 3;
-            UIController.instance.UpdateHealthSlider(PlayerStats.instance.health, PlayerStats.instance.maxHealth);
-            UIController.instance.UpdateEnergySlider(PlayerStats.instance.energy, PlayerStats.instance.maxEnergy);
+            AudioManager.instance.PlaySound(AudioManager.instance.button); //play button sound
+            PlayerStats.instance.health++; //increase health by 1
+            PlayerStats.instance.energy -= 3; //deplete energy
+            UIController.instance.UpdateHealthSlider(PlayerStats.instance.health, PlayerStats.instance.maxHealth); //update health slider
+            UIController.instance.UpdateEnergySlider(PlayerStats.instance.energy, PlayerStats.instance.maxEnergy);//update energy slider
         }
     }
 }
