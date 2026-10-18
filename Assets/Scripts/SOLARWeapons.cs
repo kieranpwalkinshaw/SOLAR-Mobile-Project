@@ -25,6 +25,7 @@ public class SOLARWeapons : MonoBehaviour
 
     public void Shoot()
     {
+        AudioManager.instance.PlaySound(AudioManager.instance.shot);
         Instantiate(prefab, transform.position, transform.rotation);
         touchControls.Instance.isTap = false;
     }

@@ -105,6 +105,7 @@ public class touchControls : MonoBehaviour
     {
         if (PlayerStats.instance.energy >= 3 && PlayerStats.instance.health < PlayerStats.instance.maxHealth)
         {
+            AudioManager.instance.PlaySound(AudioManager.instance.button);
             PlayerStats.instance.health++;
             PlayerStats.instance.energy -= 3;
             UIController.instance.UpdateHealthSlider(PlayerStats.instance.health, PlayerStats.instance.maxHealth);

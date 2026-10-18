@@ -38,7 +38,8 @@ public class PlayerStats : MonoBehaviour
         UIController.instance.UpdateHealthSlider(health, maxHealth);  
         if (health <= 0)
         {
-           Debug.Log("Game Over");
+            AudioManager.instance.PlaySound(AudioManager.instance.explosion);
+            Debug.Log("Game Over");
             UnityEngine.SceneManagement.SceneManager.LoadScene("Game Over");
         }
     }

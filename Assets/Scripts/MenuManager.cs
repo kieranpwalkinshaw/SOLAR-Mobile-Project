@@ -22,16 +22,19 @@ public class MenuManager : MonoBehaviour
     }
 
     public void PlayGame() {
+        AudioManager.instance.PlaySound(AudioManager.instance.button);
         UnityEngine.SceneManagement.SceneManager.LoadScene("Play Screen");
     }
 
     public void HelpScreen()
     {
+        AudioManager.instance.PlaySound(AudioManager.instance.button);
         UnityEngine.SceneManagement.SceneManager.LoadScene("Help Screen");
     }
 
     public void MainMenu()
     {
+        AudioManager.instance.PlaySound(AudioManager.instance.button);
         UnityEngine.SceneManagement.SceneManager.LoadScene("Main Menu");
     }
 }
