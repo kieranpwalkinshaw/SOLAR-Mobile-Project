@@ -105,10 +105,11 @@ public class touchControls : MonoBehaviour
     {
         if (PlayerStats.instance.energy >= 3 && PlayerStats.instance.health < PlayerStats.instance.maxHealth) // if the energy meter is more than or = 3 and their health isnt full
         {
-            PlayerStats.instance.health++; // add 1 to the players health
-            PlayerStats.instance.energy -= 3; // remove all energy (3(
-            UIController.instance.UpdateHealthSlider(PlayerStats.instance.health, PlayerStats.instance.maxHealth); //update health slider
-            UIController.instance.UpdateEnergySlider(PlayerStats.instance.energy, PlayerStats.instance.maxEnergy); //update energy slider
+            AudioManager.instance.PlaySound(AudioManager.instance.button);
+            PlayerStats.instance.health++;
+            PlayerStats.instance.energy -= 3;
+            UIController.instance.UpdateHealthSlider(PlayerStats.instance.health, PlayerStats.instance.maxHealth);
+            UIController.instance.UpdateEnergySlider(PlayerStats.instance.energy, PlayerStats.instance.maxEnergy);
         }
     }
 }

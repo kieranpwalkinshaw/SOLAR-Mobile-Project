@@ -25,7 +25,8 @@ public class SOLARWeapons : MonoBehaviour
 
     public void Shoot()
     {
-        Instantiate(prefab, transform.position, transform.rotation); //spawn the bullet at the position of the player
-        touchControls.Instance.isTap = false; //reset the istap so the player can shoot again
+        AudioManager.instance.PlaySound(AudioManager.instance.shot);
+        Instantiate(prefab, transform.position, transform.rotation);
+        touchControls.Instance.isTap = false;
     }
 }

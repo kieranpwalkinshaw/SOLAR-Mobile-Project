@@ -17,14 +17,15 @@ public class SOLARBullet : MonoBehaviour
         }
     }
 
-        private void OnCollisionEnter2D(Collision2D collision) // if the bullet collides with something
-    { 
-            if (collision.gameObject.CompareTag("Enemy")) // if it collides with an enemy
-        {
-            Debug.Log("Bullet hit enemy"); //confirm the bullet hit an enemy (dev confirmation for testing)
-            Destroy(gameObject); // destroy the bullet
-            UIController.instance.UpdateScoreText(score: PlayerStats.instance.Score += 100); //add 100 score and update the score text
-            UIController.instance.UpdateEnergySlider(PlayerStats.instance.energy += 1, PlayerStats.instance.maxEnergy); //add 1 energy and update the energy slider
+        private void OnCollisionEnter2D(Collision2D collision) 
+        { 
+            if (collision.gameObject.CompareTag("Enemy"))
+            {
+            Debug.Log("Bullet hit enemy");
+            Destroy(gameObject);
+            AudioManager.instance.PlaySound(AudioManager.instance.explosion);
+            UIController.instance.UpdateScoreText(score: PlayerStats.instance.Score += 100);
+            UIController.instance.UpdateEnergySlider(PlayerStats.instance.energy += 1, PlayerStats.instance.maxEnergy);
         }
         }   
 }

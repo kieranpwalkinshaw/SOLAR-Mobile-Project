@@ -41,8 +41,9 @@ public class PlayerStats : MonoBehaviour
         UIController.instance.UpdateHealthSlider(health, maxHealth);  // update the health slider
         if (health <= 0)
         {
-           Debug.Log("Game Over"); //confirm game over (dev confirmation for testing)
-            UnityEngine.SceneManagement.SceneManager.LoadScene("Game Over"); // change scene to Game Over
+            AudioManager.instance.PlaySound(AudioManager.instance.explosion);
+            Debug.Log("Game Over");
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Game Over");
         }
     }
 }
