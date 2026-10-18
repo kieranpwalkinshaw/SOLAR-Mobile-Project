@@ -18,7 +18,7 @@ public class MenuManager : MonoBehaviour
     }
 
     public void QuitGame() {
-        Application.Quit();
+        Application.Quit(); // exit the program
     }
 
     public void PlayGame() {

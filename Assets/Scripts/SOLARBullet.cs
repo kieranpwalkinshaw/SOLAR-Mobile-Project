@@ -10,10 +10,10 @@ public class SOLARBullet : MonoBehaviour
     public static SOLARBullet instance;
     void Update()
     {
-        transform.position += new Vector3(0f, SOLARWeapons.Instance.speed * Time.deltaTime);
-        if (transform.position.y > Camera.main.ViewportToWorldPoint(new Vector2(0, 1)).y)
+        transform.position += new Vector3(0f, SOLARWeapons.Instance.speed * Time.deltaTime); // move the bullet upwards based on speed and deltaTime
+        if (transform.position.y > Camera.main.ViewportToWorldPoint(new Vector2(0, 1)).y) // if the bullet goes off screen
         {
-            Destroy(gameObject);
+            Destroy(gameObject); // destroy the bullet
         }
     }
 
