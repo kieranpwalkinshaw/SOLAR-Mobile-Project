@@ -18,20 +18,20 @@ public class MenuManager : MonoBehaviour
     }
 
     public void QuitGame() {
-        Application.Quit();
+        Application.Quit(); // exit the program
     }
 
     public void PlayGame() {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Play Screen");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Play Screen"); // change scene to Play Screen
     }
 
     public void HelpScreen()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Help Screen");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Help Screen"); //change scene to Help Screen
     }
 
     public void MainMenu()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Main Menu");
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Main Menu");//change scene to Main Menu
     }
 }
