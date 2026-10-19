@@ -21,7 +21,10 @@ public class PlayerStats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (energy >= maxEnergy)
+        {
+            energy = maxEnergy;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
