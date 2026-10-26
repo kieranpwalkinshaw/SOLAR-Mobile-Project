@@ -11,7 +11,6 @@ public class touchControls : MonoBehaviour
     //declare variables
     public bool isTap = false;
     private bool isDragging = false;
-    private bool touchStarted = false;
     private float Xoffset;
     private float fixedY;
     //declare variables for the left and right bounds of the screen
@@ -93,7 +92,6 @@ public class touchControls : MonoBehaviour
                         isTap = true; // If the touch isnt a drag, it's a tap
                     }
 
-                    touchStarted = false;
                     isDragging = false;
                 }
             }
