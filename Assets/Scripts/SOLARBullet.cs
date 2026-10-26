@@ -24,9 +24,9 @@ public class SOLARBullet : MonoBehaviour
             Debug.Log("Bullet hit enemy"); // log a message to the console for dev confrimation
             Destroy(gameObject); // destroy the bullet
             AudioManager.instance.PlaySound(AudioManager.instance.explosion); // play the explosion sound effect
-            UIController.instance.UpdateScoreText(score: PlayerStats.instance.Score += 100); // update the score text in the UI by adding 100 to the player's score
+            UIController.instance.UpdateScoreText(score: PlayerStats.instance.Score += 50); // update the score text in the UI by adding 100 to the player's score
             UIController.instance.UpdateEnergySlider(PlayerStats.instance.energy += 1, PlayerStats.instance.maxEnergy); // update the energy slider in the UI by adding 1 to the player's energy
-            SOLARWeapons.Instance.shotCooldown = 0.7f;
+            SOLARWeapons.Instance.shotCooldown = 0.7f; // reset player shot cooldown
         }
         }   
 }
