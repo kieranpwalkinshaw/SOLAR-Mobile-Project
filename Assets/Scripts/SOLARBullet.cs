@@ -26,6 +26,7 @@ public class SOLARBullet : MonoBehaviour
             AudioManager.instance.PlaySound(AudioManager.instance.explosion); // play the explosion sound effect
             UIController.instance.UpdateScoreText(score: PlayerStats.instance.Score += 100); // update the score text in the UI by adding 100 to the player's score
             UIController.instance.UpdateEnergySlider(PlayerStats.instance.energy += 1, PlayerStats.instance.maxEnergy); // update the energy slider in the UI by adding 1 to the player's energy
+            SOLARWeapons.Instance.shotCooldown = 0.7f;
         }
         }   
 }
