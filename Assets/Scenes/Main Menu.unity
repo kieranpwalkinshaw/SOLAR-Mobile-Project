@@ -2054,7 +2054,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edd102ec6969e0748a05f0edf92c7d0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScrollingBackground
-  scrollSpeed: -4
+  scrollSpeed: -2
+  worldSpeed: 0
 --- !u!212 &2049606609
 SpriteRenderer:
   serializedVersion: 3

@@ -9,7 +9,6 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] public int energy = 0;
     [SerializeField] public int maxEnergy = 3;
     public int Score = 0;
-    public float worldSpeed = 0f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
  
     void Start()
@@ -27,7 +26,6 @@ public class PlayerStats : MonoBehaviour
         {
             energy = maxEnergy;
         }
-        worldSpeed += Time.deltaTime;
     }
 
     private bool gameOver = false;

@@ -13,6 +13,7 @@ public class DartObjectSpawning : MonoBehaviour
     public float spawnInterval = 2f;
     public float minSpawnInterval = 1f;
     public int spawnedObjectCount;
+    public float speed;
 
     private void Awake()
     {
@@ -26,6 +27,16 @@ public class DartObjectSpawning : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        speed -= Time.deltaTime / 10;
+        if (speed < -9)
+        {
+            speed = -9;
+        }
+        spawnInterval -= Time.deltaTime / 15;
+        if (spawnInterval <= 1)
+        {
+            spawnInterval = 1;
+        }
         spawnTimer += Time.deltaTime; // increase the spawntimer with deltatime
         if (spawnTimer >= spawnInterval) // if the spawntimer is greater than or equal to the spawninterval
         {

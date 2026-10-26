@@ -108,7 +108,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Dart
   health: 1
-  speed: 5
+  speed: 3
 --- !u!60 &-2833740217750895389
 PolygonCollider2D:
   m_ObjectHideFlags: 0
