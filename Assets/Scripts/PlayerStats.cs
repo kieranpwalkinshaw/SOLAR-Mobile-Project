@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
@@ -8,11 +9,12 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] public int maxHealth = 3;
     [SerializeField] public int energy = 0;
     [SerializeField] public int maxEnergy = 3;
-    public int Score = 0;
+    public int Score;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
  
     void Start()
     {
+        Score = 0;
         instance = this;
         health = maxHealth;
         UIController.instance.UpdateHealthSlider(health, maxHealth); //set the health slider to the max health at the start of the game

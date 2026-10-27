@@ -10,7 +10,7 @@ public class SOLARBullet : MonoBehaviour
     public static SOLARBullet instance;
     void Update()
     {
-        transform.position += new Vector3(0f, SOLARWeapons.Instance.speed * Time.deltaTime); // move the bullet upwards based on the speed of the weapon
+        transform.position += new Vector3(0f, SOLARWeapons.Instance.speed * Time.deltaTime * 3); // move the bullet upwards based on the speed of the weapon
         if (transform.position.y > Camera.main.ViewportToWorldPoint(new Vector2(0, 1)).y) // if the bullet has moved off the top of the screen, destroy it
         {
             Destroy(gameObject);

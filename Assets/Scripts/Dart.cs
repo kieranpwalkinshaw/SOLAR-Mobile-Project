@@ -27,7 +27,6 @@ public class Dart : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision) //on collision
     {
         health--; //-1 health
-        PlayerStats.instance.Score -= 50;
         if (health <= 0) //if health is 0 or less
         {
             Destroy(gameObject); //destroy dart
