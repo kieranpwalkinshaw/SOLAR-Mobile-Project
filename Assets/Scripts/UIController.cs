@@ -6,7 +6,7 @@ public class UIController : MonoBehaviour
     private void Awake()
     {
         instance = this;
-        ScoreText.text = "Score: 0";
+        ScoreText.text = "Score: ";
         EnergySlider.value = 0;
     }
     public static UIController instance;

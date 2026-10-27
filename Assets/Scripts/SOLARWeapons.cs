@@ -30,6 +30,6 @@ public class SOLARWeapons : MonoBehaviour
         AudioManager.instance.PlaySound(AudioManager.instance.shot); // Play the shot sound effect
         Instantiate(prefab, transform.position, transform.rotation); // spawn a bullet at the position of the weapon
         touchControls.Instance.isTap = false; // reset the isTap variable to false after shooting
-        shotCooldown = 0f;
+        shotCooldown = 0f; // start the shot cooldown
     }
 }

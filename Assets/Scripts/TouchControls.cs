@@ -13,6 +13,7 @@ public class touchControls : MonoBehaviour
     private bool isDragging = false;
     private float Xoffset;
     private float fixedY;
+    private int dragFingerId = -1;
     //declare variables for the left and right bounds of the screen
     private float maxLeft;
     private float maxRight;
@@ -35,9 +36,9 @@ public class touchControls : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.touchCount > 0)// if there is at least one touch on the screen, set touch to the first touch in the array and set touchPosition to the world position of the touch
+        for (int i = 0; i < Input.touchCount; i++)
         {
-            Touch touch = Input.GetTouch(0);
+            Touch touch = Input.GetTouch(i);
 
             Vector3 touchPosition = Camera.main.ScreenToWorldPoint(
                 new Vector3(
@@ -57,6 +58,7 @@ public class touchControls : MonoBehaviour
                 if (collider != null && collider.gameObject == gameObject) // if there is a collider and it is the SOLAR, set dragging to true and calculate the offset
                 {
                     isDragging = true;
+                    dragFingerId = touch.fingerId;
                     Xoffset = touchPosition.x - transform.position.x; // calculate the offset between the touch position and the SOLAR's position
                     fixedY = transform.position.y; // store the fixed y position of the SOLAR so it doesn't move vertically
                 }
@@ -68,7 +70,7 @@ public class touchControls : MonoBehaviour
             }
 
 
-            if (isDragging &&
+            if (isDragging && touch.fingerId == dragFingerId &&
                 (touch.phase == TouchPhase.Moved || touch.phase == TouchPhase.Stationary)) // if dragging is true and the touch is moving or stationary, update the position of the SOLAR
             {
 
@@ -77,20 +79,18 @@ public class touchControls : MonoBehaviour
                 {
                     isTap = false; // If the distance moved exceeds the threshold, it's not a tap
                     isDragging = true; // it is now a drag input
+
                 }
-                if (isDragging) //if the player is dragging
+                if (isDragging && touch.fingerId == dragFingerId) //if the player is dragging
                 {
                     float newX = touchPosition.x - Xoffset; // calculate the new x position based on the touch position and the offset
 
                     transform.position = new Vector3(Mathf.Clamp(newX, maxLeft, maxRight), fixedY, transform.position.z); // clamp the new position to the left and right bounds
                 }
 
-                if (touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled) //if the touch has ended or been canceled, set dragging to false
+                if (isDragging && touch.fingerId == dragFingerId && touch.phase == TouchPhase.Ended || touch.phase == TouchPhase.Canceled) //if the touch has ended or been canceled, set dragging to false
                 {
-                    if (!isDragging)
-                    {
-                        isTap = true; // If the touch isnt a drag, it's a tap
-                    }
+                   
 
                     isDragging = false;
                 }
